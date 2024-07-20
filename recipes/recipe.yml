@@ -1,11 +1,11 @@
 # image will be published to ghcr.io/<user>/<name>
 name: bazzite-dx
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: Development focused image based on Bazzite with proprietary Nvidia drivers.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 40 # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/ublue-os/bazzite-nvidia
+image-version: stable
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -13,15 +13,16 @@ modules:
   - type: files
     files:
       - usr: /usr # copies config/files/usr into your image's /usr.
-                  # put configuration files you want in /etc/ on a booted system 
-                  # in /usr/etc/ in the image. read more in files module reference.
+      - etc: /etc # copies config/files/etc into image's /etc to use in further modules.
 
   - type: rpm-ostree
     repos:
       # - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
     install:
-      # - micro
-      # - starship
+      - virt-manager
+      - edk2-ovmf
+      - qemu
+      - code
     remove:
       # example: removing firefox (in favor of the flatpak)
       # "firefox" is the main package, "firefox-langpacks" is a dependency
