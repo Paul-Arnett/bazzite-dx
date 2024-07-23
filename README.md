@@ -1,8 +1,12 @@
 # bazzite-dx &nbsp; [![build-ublue](https://github.com/paul-arnett/bazzite-dx/actions/workflows/build.yml/badge.svg)](https://github.com/paul-arnett/bazzite-dx/actions/workflows/build.yml)
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+This is a personal and unofficial developer flavor of [Bazzite](https://github.com/ublue-os/bazzite/), based on the [bazzite-nvidia](https://github.com/ublue-os/bazzite/pkgs/container/bazzite-nvidia) image.
 
-After setup, it is recommended you update this README to describe your custom image.
+Main Packages Added:
+- Virtualization: virt-manager, edk2-ovmf, qemu
+- Editor: Vscode
+
+Made using [BlueBuild](https://blue-build.org/how-to/setup/).
 
 ## Installation
 
@@ -29,6 +33,9 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 
 The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+
+## Additional Setup
+- To setup kernel args and vfio drivers for virtualization, run `setup-virtualization.sh` after booting into the image. (TODO: figure out how to build this into the image)
 
 ## ISO
 
