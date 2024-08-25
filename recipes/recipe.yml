@@ -16,8 +16,10 @@ alt-tags:
 modules:
   - type: files
     files:
-      - usr: /usr # copies config/files/usr into your image's /usr.
-      - etc: /etc # copies config/files/etc into image's /etc to use in further modules.
+      - source: system
+        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+      # - source: my-image/usr   # copies `files/my-image/usr/*` to `/usr/` inside the image
+      #   destination: /usr
 
   - type: rpm-ostree
     repos:
